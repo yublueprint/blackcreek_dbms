@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simple DBMS - Home</title>
+</head>
+
+<body>
+    <h1>All Records</h1>
+    <a href="/add/">Add New Record</a>
+    <ul>
+        {% for record in records %}
+        <li>{{ record.name }} ({{ record.email }}) - {{ record.created_at }}</li>
+        {% empty %}
+        <li>No records found.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
