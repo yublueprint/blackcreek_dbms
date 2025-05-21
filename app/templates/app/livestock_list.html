@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Livestock | BlackCreek Sync{% endblock %}
+
+{% block content %}
+<h2 class="text-3xl font-semibold mb-6">Livestock Management</h2>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <table class="min-w-full">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="py-3 px-4 text-left">ID</th>
+                <th class="py-3 px-4 text-left">Name</th>
+                <th class="py-3 px-4 text-left">Breed</th>
+                <th class="py-3 px-4 text-left">Age</th>
+                <th class="py-3 px-4 text-left">Health Status</th>
+                <th class="py-3 px-4 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal in livestock %}
+            <tr class="border-t">
+                <td class="py-3 px-4">{{ animal.id }}</td>
+                <td class="py-3 px-4">{{ animal.name }}</td>
+                <td class="py-3 px-4">{{ animal.breed }}</td>
+                <td class="py-3 px-4">{{ animal.age }}</td>
+                <td class="py-3 px-4">{{ animal.health_status }}</td>
+                <td class="py-3 px-4">
+                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="py-3 px-4 text-center">No livestock records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
