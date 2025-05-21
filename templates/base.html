@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django Project{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Django Project</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'crops_list' %}">Crops</a></li>
+                <li><a href="{% url 'livestock_list' %}">Livestock</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ current_year }} My Django Project</p>
+    </footer>
+
+    <script src="{% static 'scripts.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

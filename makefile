@@ -17,11 +17,11 @@ help:
 build:
 	python3 -m venv $(VENV)
 	$(PIP) install --upgrade pip
-	$(PIP) install -r requirements.txt
+	$(PIP) install -r ./config/requirements.txt
 
 migrate:
 	$(PYTHON) manage.py migrate
-
+	
 superuser:
 	$(PYTHON) manage.py createsuperuser
 

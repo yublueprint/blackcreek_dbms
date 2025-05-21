@@ -6,7 +6,7 @@ Repository: [https://github.com/yublueprint/blackcreek_dbms](https://github.com/
 
 ---
 
-## Quickstart
+## Quickstart (MAC)
 
 ### 1. Clone the Repository from desktop
 
@@ -20,6 +20,7 @@ cd blackcreek_dbms
 ```bash
 make build
 ```
+
 - Creates a virtual environment (`venv`)
 - Installs dependencies from `requirements.txt`
 
@@ -42,5 +43,49 @@ make clean
 ```
 
 Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
 Hamza
+
+---
+
+## Quickstart (Windows)
+
+### 1. Clone the Repository
+
+```bat
+git clone https://github.com/yublueprint/blackcreek_dbms.git
+cd blackcreek_dbms
+```
+
+### 2. Create a Virtual Environment
+
+```bat
+python -m venv venv
+```
+
+### 3. Activate the Virtual Environment
+
+```bat
+venv\Scripts\activate
+```
+
+### 4. Install Dependencies
+
+```bat
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 5. Apply Database Migrations
+
+```bat
+python manage.py migrate
+```
+
+### 6. Run the Development Server
+
+```bat
+python manage.py runserver
+```
+
+Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
