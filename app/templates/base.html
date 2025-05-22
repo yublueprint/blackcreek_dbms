@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}BlackCreek Sync{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold mb-4">Farm Admin</h1>
+                <nav class="space-y-2">
+                    <a href="{% url 'dashboard' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'dashboard' %}bg-gray-200{% endif %}">Overview</a>
+                    <a href="{% url 'livestock_list' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'livestock_list' %}bg-gray-200{% endif %}">🐄 Livestock</a>
+                    <a href="{% url 'crop_list' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'crop_list' %}bg-gray-200{% endif %}">🌾 Crops</a>
+                    <a href="{% url 'equipment_list' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'equipment_list' %}bg-gray-200{% endif %}">⚙️ Equipment</a>
+                    <a href="{% url 'logout' %}" class="block text-red-600 hover:bg-red-100 p-2 rounded">🚪 Logout</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

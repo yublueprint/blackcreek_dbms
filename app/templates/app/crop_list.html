@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Crops | BlackCreek Sync{% endblock %}
+
+{% block content %}
+<h2 class="text-3xl font-semibold mb-6">Crop Management</h2>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <table class="min-w-full">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="py-3 px-4 text-left">ID</th>
+                <th class="py-3 px-4 text-left">Name</th>
+                <th class="py-3 px-4 text-left">Planting Date</th>
+                <th class="py-3 px-4 text-left">Harvest Date</th>
+                <th class="py-3 px-4 text-left">Yield Estimate</th>
+                <th class="py-3 px-4 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crop in crops %}
+            <tr class="border-t">
+                <td class="py-3 px-4">{{ crop.id }}</td>
+                <td class="py-3 px-4">{{ crop.name }}</td>
+                <td class="py-3 px-4">{{ crop.planting_date }}</td>
+                <td class="py-3 px-4">{{ crop.harvest_date }}</td>
+                <td class="py-3 px-4">{{ crop.yield_estimate }}</td>
+                <td class="py-3 px-4">
+                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="py-3 px-4 text-center">No crop records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Equipment | BlackCreek Sync{% endblock %}
+
+{% block content %}
+<h2 class="text-3xl font-semibold mb-6">Equipment Management</h2>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <table class="min-w-full">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="py-3 px-4 text-left">ID</th>
+                <th class="py-3 px-4 text-left">Name</th>
+                <th class="py-3 px-4 text-left">Type</th>
+                <th class="py-3 px-4 text-left">Purchase Date</th>
+                <th class="py-3 px-4 text-left">Maintenance Due</th>
+                <th class="py-3 px-4 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in equipment %}
+            <tr class="border-t">
+                <td class="py-3 px-4">{{ item.id }}</td>
+                <td class="py-3 px-4">{{ item.name }}</td>
+                <td class="py-3 px-4">{{ item.type }}</td>
+                <td class="py-3 px-4">{{ item.purchase_date }}</td>
+                <td class="py-3 px-4">{{ item.maintenance_due }}</td>
+                <td class="py-3 px-4">
+                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="py-3 px-4 text-center">No equipment records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
