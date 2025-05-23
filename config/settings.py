@@ -114,7 +114,7 @@ USE_TZ = True
 
 
 LOGIN_URL = 'login'               # Redirects to this page if not logged in
-LOGIN_REDIRECT_URL = '/'          # Where to go after successful login
+LOGIN_REDIRECT_URL = '/dashboard'          # Where to go after successful login
 LOGOUT_REDIRECT_URL = 'login'
 
 # Static files (CSS, JavaScript, Images)

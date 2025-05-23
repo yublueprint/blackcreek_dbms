@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from .backend.dashboard.dashboard import dashboard
 from .backend.livestock.livestock import livestock_list
 from .backend.crop.crop import crop_list
