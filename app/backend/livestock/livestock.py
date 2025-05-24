@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ...models import Livestock
+from ..models import Livestock
 
 def livestock_list(request):
     livestock = Livestock.objects.all()
