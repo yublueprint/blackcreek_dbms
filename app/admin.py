@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Record
+from .backend.models import Record
 
 admin.site.register(Record)
