@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Record(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -7,6 +8,7 @@ class Record(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Livestock(models.Model):
     name = models.CharField(max_length=100)
@@ -17,6 +19,7 @@ class Livestock(models.Model):
     def __str__(self):
         return self.name
 
+
 class Crop(models.Model):
     name = models.CharField(max_length=100)
     planting_date = models.DateField()
@@ -25,6 +28,7 @@ class Crop(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Equipment(models.Model):
     name = models.CharField(max_length=100)
