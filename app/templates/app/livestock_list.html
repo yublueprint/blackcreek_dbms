@@ -4,6 +4,169 @@
 
 {% block content %}
 <h2 class="text-3xl font-semibold mb-6">Livestock Management</h2>
+
+<!-- Add Button -->
+<button
+  id="addButton"
+  class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 mb-4"
+>
+  Add Livestock
+</button>
+
+<!-- Add Button Popup Form -->
+<div
+  id="popupForm"
+  class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
+  <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4">Add Livestock</h3>
+    <form method="post" id="addLivestockForm" action="{% url 'add_livestock' %}">
+      {% csrf_token %}
+      <label class="block mb-2">Name:</label>
+      <input
+        type="text"
+        name="name"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <label class="block mb-2">Breed:</label>
+      <input
+        type="text"
+        name="breed"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <label class="block mb-2">Age:</label>
+      <input
+        type="number"
+        name="age"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <label class="block mb-2">Health Status:</label>
+      <input
+        type="text"
+        name="health_status"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <button
+        type="submit"
+        class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+      >
+        Save
+      </button>
+    </form>
+    <button
+      id="closeButton"
+      class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 mt-4"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+
+<!-- Edit Popup -->
+<div
+  id="editPopup"
+  class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
+  <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4">Edit Livestock</h3>
+    <form method="post" id="editLivestockForm" action="{% url 'edit_livestock' %}">
+      {% csrf_token %}
+      <input type="hidden" name="id" id="editId" />
+      <label class="block mb-2">Name:</label>
+      <input
+        type="text"
+        name="name"
+        id="editName"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <label class="block mb-2">Breed:</label>
+      <input
+        type="text"
+        name="breed"
+        id="editBreed"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <label class="block mb-2">Age:</label>
+      <input
+        type="number"
+        name="age"
+        id="editAge"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <label class="block mb-2">Health Status:</label>
+      <input
+        type="text"
+        name="health_status"
+        id="editHealthStatus"
+        class="w-full border rounded px-3 py-2 mb-4"
+        required
+      />
+
+      <button
+        type="submit"
+        class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+      >
+        Save Changes
+      </button>
+    </form>
+    <button
+      id="closeEditButton"
+      class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 mt-4"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+
+<!-- Delete Popup -->
+<div
+  id="deletePopup"
+  class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
+  <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4">Delete Livestock</h3>
+    <p class="text-lg mb-4">
+      Are you sure you want to delete the livestock record for
+      <strong id="deleteName"></strong>?
+    </p>
+    <form method="post" id="deleteLivestockForm" action="{% url 'delete_livestock' %}">
+      {% csrf_token %}
+      <input type="hidden" name="id" id="deleteId" />
+      <div class="flex justify-center gap-x-4">
+        <button
+          type="submit"
+          class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700"
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          id="closeDeleteButton"
+          class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Table -->
+
 <div class="bg-white rounded-lg shadow-md overflow-hidden">
     <table class="min-w-full">
         <thead class="bg-gray-100">
@@ -25,8 +188,21 @@
                 <td class="py-3 px-4">{{ animal.age }}</td>
                 <td class="py-3 px-4">{{ animal.health_status }}</td>
                 <td class="py-3 px-4">
-                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
-                </td>
+                  
+                  <button
+                  onclick="openEditPopup('{{ animal.id }}', '{{ animal.name }}', '{{ animal.breed }}', '{{ animal.age }}', '{{ animal.health_status }}')"
+                  class="text-blue-600 hover:underline"
+                >
+                  Edit
+                </button>
+                  |
+                  <button
+                  onclick="openDeletePopup('{{ animal.id }}', '{{ animal.name }}')"
+                  class="text-red-600 hover:underline"
+                >
+                  Delete
+                </button>
+                </td>     
             </tr>
             {% empty %}
             <tr>
@@ -36,4 +212,55 @@
         </tbody>
     </table>
 </div>
+
+<script>
+  /*Might make this into a javascript file later*/
+
+  //Logic for adding popup
+    const addButton = document.getElementById("addButton");
+    const popupForm = document.getElementById("popupForm");
+    const closeButton = document.getElementById("closeButton");
+  
+    addButton.addEventListener("click", () => {
+      popupForm.classList.remove("hidden");
+    });
+  
+    closeButton.addEventListener("click", () => {
+      popupForm.classList.add("hidden");
+    });
+
+  // Logic for Edit Popup this is to display the edit popup with pre-filled data from the row which we are editing
+  const editPopup = document.getElementById("editPopup");
+  const closeEditButton = document.getElementById("closeEditButton");
+
+  function openEditPopup(id, name, breed, age, healthStatus) {
+    document.getElementById("editId").value = id;
+    document.getElementById("editName").value = name;
+    document.getElementById("editBreed").value = breed;
+    document.getElementById("editAge").value = age;
+    document.getElementById("editHealthStatus").value = healthStatus;
+    editPopup.classList.remove("hidden");
+  }
+
+  closeEditButton.addEventListener("click", () => {
+    editPopup.classList.add("hidden");
+  });
+
+
+  //Logic for Delete Popup
+  const deletePopup = document.getElementById("deletePopup");
+  const closeDeleteButton = document.getElementById("closeDeleteButton");
+
+  function openDeletePopup(id, name) {
+    document.getElementById("deleteId").value = id;
+    document.getElementById("deleteName").textContent = name;
+    deletePopup.classList.remove("hidden");
+  }
+
+  closeDeleteButton.addEventListener("click", () => {
+    deletePopup.classList.add("hidden");
+  });
+
+  </script>
+  
 {% endblock %}
