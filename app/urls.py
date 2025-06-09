@@ -4,6 +4,7 @@ from .backend.crop.crop import crop_list
 from .backend.dashboard.dashboard import dashboard
 from .backend.equipment.equipment import equipment_list  # <-- Add this line
 from .backend.livestock.livestock import add_livestock, delete_livestock, edit_livestock, livestock_list
+from .backend.crop.crop import add_crop, delete_crop, edit_crop, crop_list
 
 urlpatterns = [
     path("", dashboard, name="dashboard"),
@@ -16,6 +17,10 @@ urlpatterns = [
 
     # Crop URLs
     path("crops/", crop_list, name="crop_list"),
+    path("crops/add/", add_crop, name="add_crop"),
+    path("crops/edit/", edit_crop, name="edit_crop"),
+    path("crops/delete/", delete_crop, name="delete_crop"),
+
 
     # Equipment URLs
     path("equipment/", equipment_list, name="equipment_list"),  
