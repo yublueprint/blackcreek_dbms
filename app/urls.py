@@ -2,7 +2,7 @@ from django.urls import path
 
 from .backend.crop.crop import crop_list
 from .backend.dashboard.dashboard import dashboard
-from .backend.equipment.equipment import equipment_list  # <-- Add this line
+from .backend.equipment.equipment import add_equipment, delete_equipment, edit_equipment, equipment_list 
 from .backend.livestock.livestock import add_livestock, delete_livestock, edit_livestock, livestock_list
 from .backend.crop.crop import add_crop, delete_crop, edit_crop, crop_list
 
@@ -24,4 +24,7 @@ urlpatterns = [
 
     # Equipment URLs
     path("equipment/", equipment_list, name="equipment_list"),  
+    path("equipment/add/", add_equipment, name="add_equipment"),
+    path("equipment/edit/", edit_equipment, name="edit_equipment"),
+    path("equipment/delete/", delete_equipment, name="delete_equipment"),
 ]
