@@ -36,14 +36,21 @@ make migrate
 make run
 ```
 
-### 5. Clean the Venv
+### 5. Create an Admin/SignUp
+
+```bash
+make signup
+```
+
+### 6. Clean the Venv
 
 ```bash
 make clean
 ```
 
-Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-Hamza
+### Local Development Server
+
+**[Open the app at http://127.0.0.1:8000](http://127.0.0.1:8000)**
 
 ---
 
