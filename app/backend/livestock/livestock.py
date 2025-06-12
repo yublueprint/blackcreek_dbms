@@ -1,16 +1,19 @@
-from app.logging.logging import Logger
-from django.shortcuts import render, redirect, get_object_or_404
-from ..models import Livestock
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+
+from app.logging.logging import Logger
+
+from ..models import Livestock
 
 logger = Logger("app/logging/app.log")
+
 
 @login_required
 def livestock_list(request):
     livestock = Livestock.objects.all()
     logger.log(f"User {request.user} viewed livestock list.")
     return render(request, "app/livestock_list.html", {"livestock": livestock})
+
 
 @login_required
 def add_livestock(request):
@@ -29,6 +32,7 @@ def add_livestock(request):
         logger.log(f"User {request.user} added livestock: {name}")
         return redirect("livestock_list")
 
+
 @login_required
 def edit_livestock(request):
     if request.method == "POST":
@@ -42,10 +46,11 @@ def edit_livestock(request):
         logger.log(f"User {request.user} edited livestock: {old_name} to {animal.name}")
         return redirect("livestock_list")
 
+
 @login_required
 def delete_livestock(request):
     if request.method == "POST":
-        animal = get_object_or_404(Livestock,  id=request.POST.get("id"))
+        animal = get_object_or_404(Livestock, id=request.POST.get("id"))
         animal_name = animal.name
         animal.delete()
         logger.log(f"User {request.user} deleted livestock: {animal_name}")

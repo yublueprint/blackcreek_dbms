@@ -1,16 +1,19 @@
-from app.logging.logging import Logger
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+
+from app.logging.logging import Logger
+
 from ..models import Equipment
 
 logger = Logger("app/logging/app.log")
+
 
 @login_required
 def equipment_list(request):
     equipment = Equipment.objects.all()
     logger.log(f"User {request.user} viewed equipment list.")
     return render(request, "app/equipment_list.html", {"equipment": equipment})
+
 
 @login_required
 def add_equipment(request):
@@ -29,6 +32,7 @@ def add_equipment(request):
         logger.log(f"User {request.user} added equipment: {name}")
         return redirect("equipment_list")
 
+
 @login_required
 def edit_equipment(request):
     if request.method == "POST":
@@ -39,8 +43,11 @@ def edit_equipment(request):
         equipment.purchase_date = request.POST.get("purchase_date")
         equipment.maintenance_due = request.POST.get("maintenance_due")
         equipment.save()
-        logger.log(f"User {request.user} edited equipment: {old_name} to {equipment.name}")
+        logger.log(
+            f"User {request.user} edited equipment: {old_name} to {equipment.name}"
+        )
         return redirect("equipment_list")
+
 
 @login_required
 def delete_equipment(request):
