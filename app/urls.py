@@ -6,6 +6,8 @@ from .backend.equipment.equipment import (add_equipment, delete_equipment,
                                           edit_equipment, equipment_list)
 from .backend.livestock.livestock import (add_livestock, delete_livestock,
                                           edit_livestock, livestock_list)
+from .backend.supplies.supplies import (add_supplies, delete_supplies, 
+                                        edit_supplies, supplies_list)
 
 urlpatterns = [
     path("", dashboard, name="dashboard"),
@@ -24,4 +26,9 @@ urlpatterns = [
     path("equipment/add/", add_equipment, name="add_equipment"),
     path("equipment/edit/", edit_equipment, name="edit_equipment"),
     path("equipment/delete/", delete_equipment, name="delete_equipment"),
+    # Supplies URLs
+    path("supplies/", supplies_list, name="supplies_list"),
+    path("supplies/add/", add_supplies, name="add_supplies"),
+    path("supplies/edit/", edit_supplies, name="edit_supplies"),
+    path("supplies/delete/", delete_supplies, name="delete_supplies"),
 ]

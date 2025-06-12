@@ -38,3 +38,12 @@ class Equipment(models.Model):
 
     def __str__(self):
         return self.name
+
+class Supplies(models.Model):
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    quantity = models.IntegerField()
+    unit = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
