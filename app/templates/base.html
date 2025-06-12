@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}BlackCreek Sync{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <aside class="w-64 bg-white shadow-md">
-            <div class="p-6">
-                <h1 class="text-2xl font-bold mb-4">Farm Admin</h1>
-                <nav class="space-y-2">
-                    <a href="{% url 'dashboard' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'dashboard' %}bg-gray-200{% endif %}">Overview</a>
-                    <a href="{% url 'livestock_list' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'livestock_list' %}bg-gray-200{% endif %}"> Livestock</a>
-                    <a href="{% url 'crop_list' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'crop_list' %}bg-gray-200{% endif %}"> Crops</a>
-                    <a href="{% url 'equipment_list' %}" class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'equipment_list' %}bg-gray-200{% endif %}"> Equipment</a>
-                    <a href="/supplies/" class="block text-gray-700 hover:bg-gray-200 p-2 rounded">Supplies</a>
-                    <a href="/transactions/" class="block text-gray-700 hover:bg-gray-200 p-2 rounded">Transactions</a>
-                    <a href="/reports/" class="block text-gray-700 hover:bg-gray-200 p-2 rounded">Reports</a>
-                    <a href="{% url 'logout' %}" class="block text-red-600 hover:bg-red-100 p-2 rounded"> Logout</a>
+        <aside class="w-64 bg-white shadow-md flex flex-col h-full">
+            <div class="p-6 flex-grow">
+                <h1 class="text-xl font-bold mb-4"><img class="w-full" src="https://www.blackcreekfarm.ca/custom/uploads/2018/12/logo-all_horizonalt.png"/></h1>
+                <nav class="space-y-4 mt-5">
+                    <a href="{% url 'dashboard' %}"
+                        class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'dashboard' %}bg-gray-200{% endif %}">
+                        <i class="fas fa-chart-line mr-2"></i>Overview
+                    </a>
+                    <a href="{% url 'livestock_list' %}"
+                        class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'livestock_list' %}bg-gray-200{% endif %}">
+                        <i class="fas fa-cow mr-2"></i>Livestock
+                    </a>
+                    <a href="{% url 'crop_list' %}"
+                        class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'crop_list' %}bg-gray-200{% endif %}">
+                        <i class="fas fa-seedling mr-2"></i>Crops
+                    </a>
+                    <a href="{% url 'equipment_list' %}"
+                        class="block text-gray-700 hover:bg-gray-200 p-2 rounded {% if request.resolver_match.url_name == 'equipment_list' %}bg-gray-200{% endif %}">
+                        <i class="fas fa-tractor mr-2"></i>Equipment
+                    </a>
+                    <a href="/supplies/" class="block text-gray-700 hover:bg-gray-200 p-2 rounded">
+                        <i class="fas fa-box-open mr-2"></i>Supplies
+                    </a>
+                    <a href="/transactions/" class="block text-gray-700 hover:bg-gray-200 p-2 rounded">
+                        <i class="fas fa-dollar-sign mr-2"></i>Transactions
+                    </a>
+                    <a href="/reports/" class="block text-gray-700 hover:bg-gray-200 p-2 rounded">
+                        <i class="fas fa-file-alt mr-2"></i>Reports
+                    </a>
                 </nav>
+            </div>
+            <div class="p-4 border-t">
+                <a href="{% url 'logout' %}" class="block text-red-600 hover:bg-red-100 p-2 rounded font-medium">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </a>
             </div>
         </aside>
 
@@ -30,4 +55,5 @@
         </main>
     </div>
 </body>
+
 </html>
