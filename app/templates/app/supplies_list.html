@@ -13,6 +13,15 @@
     Add Supply
 </button> 
 
+<!-- Display Error Message if Error occurs-->
+{% if error %}
+<strong
+    id="errorMessageToDisplay"
+    class="text-md border-2 border-solid rounded-lg border-red-900 bg-red-100 text-red-900 flex mb-4 px-4 py-3">
+    Error: {{ error }}
+</strong>
+{% endif %}
+
 <!-- Add Button Popup Form -->
 <div
     id="popupForm"
