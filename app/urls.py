@@ -6,7 +6,7 @@ from .backend.equipment.equipment import (add_equipment, delete_equipment,
                                           edit_equipment, equipment_list)
 from .backend.livestock.livestock import (add_livestock, delete_livestock,
                                           edit_livestock, livestock_list)
-from .backend.supplies.supplies import (add_supplies, delete_supplies, 
+from .backend.supplies.supplies import (add_supplies, delete_supplies,
                                         edit_supplies, supplies_list)
 
 urlpatterns = [
