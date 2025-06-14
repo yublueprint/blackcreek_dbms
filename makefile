@@ -84,7 +84,7 @@ lint-fix:
 	@echo "Done fixing lint issues!"
 
 clean: info
-	@echo "🧹 Removing virtual environment and cache files..."
+	@echo "Removing virtual environment and cache files..."
 	rm -rf $(VENV)
 	@find . -type d -name "__pycache__" -exec rm -r {} + 2>/dev/null || powershell -Command "Get-ChildItem -Recurse -Directory -Filter '__pycache__' | Remove-Item -Recurse -Force"
 	@find . -type f -name "*.pyc" -delete 2>/dev/null || powershell -Command "Get-ChildItem -Recurse -Filter '*.pyc' | Remove-Item -Force"
