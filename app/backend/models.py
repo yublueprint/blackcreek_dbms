@@ -48,3 +48,30 @@ class Supplies(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Transaction(models.Model):
+    ITEM_TYPE_CHOICES = [
+        ("Crop", "Crop"),
+        ("Livestock", "Livestock"),
+        ("Equipment", "Equipment"),
+        ("Supplies", "Supplies"),
+
+    ]
+
+    TRANSACTION_TYPE_CHOICES = [
+        ("Sale", "Sale"),
+        ("Purchase", "Purchase"),
+        ("Return", "Return"),
+
+
+    ]
+
+    item_type = models.CharField(max_length=20, choices=ITEM_TYPE_CHOICES)
+    item_id = models.PositiveIntegerField()
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPE_CHOICES)
+    quantity = models.PositiveIntegerField()
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.transaction_type} of {self.item_type} (ID: {self.item_id})"
